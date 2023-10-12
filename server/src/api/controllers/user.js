@@ -1,5 +1,6 @@
 import userModel from '../models/userModel.js'
 import bcrypt from 'bcrypt'
+import generateToken from '../middlewares/generateToken.js'
 
 
 /**
@@ -7,7 +8,7 @@ import bcrypt from 'bcrypt'
  * Desc: user sign in
  */
 export const signup = async (req, res) => {
-        const { email, password, confirmPassword} = req.body;
+        const { email, password, confirmPassword } = req.body;
 
         //check for already existing user
         const oldUser = await userModel.findOne({email})
@@ -27,7 +28,7 @@ export const signup = async (req, res) => {
         }
 
         //password regex
-        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,0}$/
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%#^&*])(?=.*[0-9]).{8,}$/;
 
         const emailDomains = [
             "@gmail.com",
@@ -53,12 +54,11 @@ export const signup = async (req, res) => {
         }
 
         
-
-
+        const hashedPassword = await bcrypt.hash(password, 12)
         //create user
         const newUser = await userModel.create({
             email,
-            password
+            password: hashedPassword
         })
 
         if(newUser){
@@ -67,4 +67,37 @@ export const signup = async (req, res) => {
                 email: newUser.email
             })
         }
+}
+
+
+
+
+
+//Route: /user/signin
+//Desc: user sign in
+export const signin = async (req, res) => {
+        const { email, password } = req.body
+
+        //finduser
+        const oldUser = await userModel.findOne({email})
+
+        if(oldUser){
+            const isPasswordCorrect = bcrypt.compare(password, oldUser.password)
+
+            const token = generateToken(oldUser, process.env.USER_SECRET)
+            
+
+            if(isPasswordCorrect){
+                return res.status(201).json({
+                    oldUser,
+                    token
+                })
+            }
+        }
+        else{
+            return res.status(404).json({
+                msg: "user does not exist"
+            })
+        }
+
 }
