@@ -1,7 +1,5 @@
-# Team : localhost-3000
-## Track : Open Innovation
-
-## Solution Title : ReLive
+# Team : localhost-3000 (Open Innovation)
+# ReLive
 
 ### Description : 
 The fitness or the general healthcare industry in India is highly unregulated and is even worsen by unrealistic expectations , unlicienced trainers and lack of personalization.
