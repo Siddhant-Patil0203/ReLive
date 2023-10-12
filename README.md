@@ -12,4 +12,4 @@ The fitness or the general healthcare industry in India is highly unregulated an
 
 
 ### FlowChart 
-You can access the flowchart from here [link ReLive Flowchart](https://miro.com/app/board/uXjVNbKraZ4=/?share_link_id=496277461069)
+You can access the flowchart from here [ReLive Flowchart](https://miro.com/app/board/uXjVNbKraZ4=/?share_link_id=496277461069)
