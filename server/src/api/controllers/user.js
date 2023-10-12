@@ -27,7 +27,7 @@ export const signup = async (req, res) => {
         }
 
         //password regex
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%#^&*])(?=.*[0-9]).{8,}$/
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%#^&*])(?=.*[0-9]).{8,}$/;
 
         const emailDomains = [
             "@gmail.com",
@@ -53,16 +53,12 @@ export const signup = async (req, res) => {
         }
 
         
-
-        console.log(email),
-        console.log(password)
+        const hashedPassword = await bcrypt.hash(password, 12)
         //create user
         const newUser = await userModel.create({
             email,
-            password
+            password: hashedPassword
         })
-
-        console.log(newUser)
 
         if(newUser){
             res.status(201).json({
