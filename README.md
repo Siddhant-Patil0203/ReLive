@@ -9,3 +9,7 @@ The fitness or the general healthcare industry in India is highly unregulated an
 - Technolgy is filling gaps in almost all the sectors to its potential in revolutionizing the fitness industry remains largely untapped.
 - Applications built for youger people is unable to guide the older population, Hence we are providing easy interactive guiding throught the session.
 - Even if you start with full confidence, retaining the users for log run is difficult on online applications. For that we are integrating streaks, reward and gamification to encourage the user.
+
+
+### FlowChart 
+You can access the flowchart from here [link ReLive Flowchart](https://miro.com/app/board/uXjVNbKraZ4=/?share_link_id=496277461069)
