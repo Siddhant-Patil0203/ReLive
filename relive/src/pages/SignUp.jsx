@@ -136,41 +136,7 @@ function SignUp() {
 
               <form action="#" method="POST" className="mt-8">
                 <div className="space-y-5">
-                  <div>
-                    <label
-                      htmlFor=""
-                      className="text-base font-medium text-text"
-                    >
-                      {" "}
-                      Fast & Last name{" "}
-                    </label>
-                    <div className="mt-2.5 relative text-gray-400 focus-within:text-background">
-                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg
-                          className="w-5 h-5"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                          />
-                        </svg>
-                      </div>
-
-                      <input
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder="Enter your full name"
-                        className="block w-full py-4 pl-10 pr-4 text-background placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-accent focus:bg-white caret-accent"
-                      />
-                    </div>
-                  </div>
+                  
 
                   <div>
                     <label

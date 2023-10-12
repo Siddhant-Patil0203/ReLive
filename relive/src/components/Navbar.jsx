@@ -9,9 +9,13 @@ function Navbar() {
             <Link href="#" title="" className="flex">
               <img
                 className="w-auto h-8 lg:h-10"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/logo.svg"
+                src="./Logo/logo(transparent).png"
                 alt=""
               />
+              <p className="text-2xl font-bold text-primary lg:text-3xl">
+                {" "}
+                <span className="text-accent">Re</span>Live{" "}
+              </p>
             </Link>
           </div>
 
