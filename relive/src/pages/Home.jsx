@@ -1,4 +1,5 @@
 import Layout from "../components/Layout";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -46,13 +47,13 @@ const Home = () => {
 
                 <p className="mt-5 text-white">
                   Already joined us?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    to="/LogIn"
                     title=""
                     className=" text-accent transition-all duration-200 hover:underline"
                   >
                     Log in
-                  </a>
+                  </Link>
                 </p>
               </div>
 

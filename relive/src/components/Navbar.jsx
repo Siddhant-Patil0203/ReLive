@@ -6,7 +6,7 @@ function Navbar() {
       <div className="">
         <nav className="relative flex items-center justify-between h-20 lg:shadow-lg lg:h-18 lg:px-8 bg-background border-b drop-shadow-lg">
           <div className="flex-shrink-0">
-            <Link href="#" title="" className="flex">
+            <Link to="/" title="" className="flex">
               <img
                 className="w-auto h-8 lg:h-10"
                 src="./Logo/logo(transparent).png"

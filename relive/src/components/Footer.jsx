@@ -197,7 +197,7 @@ const Footer = () => {
         <hr className="mt-16 mb-10 border-gray-800" />
 
         <div className="flex flex-wrap items-center justify-between">
-          <Link href="#" title="" className="flex">
+          <Link to="/" title="" className="flex">
             <img
               className="w-auto h-8 lg:h-10"
               src="./Logo/logo(transparent).png"
