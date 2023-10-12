@@ -101,3 +101,41 @@ export const signin = async (req, res) => {
         }
 
 }
+
+
+
+export const update = async (req, res) => {
+     const id = req.id
+
+     const {
+        username,
+        age,
+        gender,
+        weight,
+        height,
+        planType,
+        reminderTime
+     } = req.body
+
+     const oldUser = await userModel.findOne(id)
+
+     if(oldUser){
+        const result = await oldUser.updateOne({
+            username,
+            age,
+            gender,
+            weight,
+            height,
+            planType,
+            reminderTime
+        })
+        if(result){
+            console.log(result)
+            return res.send("user updated successfully")
+        }
+     }
+     else{
+        return res.send("user does not exist")
+     }
+
+}
