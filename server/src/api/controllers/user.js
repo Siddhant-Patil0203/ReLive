@@ -27,7 +27,7 @@ export const signup = async (req, res) => {
         }
 
         //password regex
-        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,0}$/
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%#^&*])(?=.*[0-9]).{8,}$/
 
         const emailDomains = [
             "@gmail.com",
