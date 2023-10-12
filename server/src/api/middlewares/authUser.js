@@ -5,7 +5,7 @@ dotenv.config();
 const SECRET = process.env.USER_SECRET;
 
 
-const authCustomer = async (req, res, next) => {
+const authUser = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     const isCustomAuth = token.length < 500;
@@ -31,4 +31,4 @@ const authCustomer = async (req, res, next) => {
   }
 };
 
-export default authCustomer;
+export default authUser;
