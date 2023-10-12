@@ -13,6 +13,8 @@ const userModel = mongoose.Schema({
     googleId: { type: String },
     planType: { type: String, default: "easy"},
     reminderTime: { type: Date },
+    lastExerciseDate: { type: Date },
+    streakCount: { type: Number, default:0 },
     isOnboarded: { type: Boolean, default: false}
 })
 
