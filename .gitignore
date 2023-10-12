@@ -1,0 +1,4 @@
+#general 
+*.env
+/dist
+/node_modules
