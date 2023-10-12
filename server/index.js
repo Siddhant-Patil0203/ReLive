@@ -12,6 +12,7 @@ import index  from './src/api/routes/index.js'
 import user from './src/api/routes/user.js'
 import googleAuth from './src/api/routes/googleAuth.js'
 import initializePassport from './src/api/middlewares/passportConfig.js';
+import streak from './src/api/routes/streak.js'
 
 const app = express();
 
@@ -27,6 +28,7 @@ initializePassport(app)
 app.use("/", index)
 app.use("/user", user)
 app.use("/auth", googleAuth)
+app.use("/streak", streak)
 
 
 
