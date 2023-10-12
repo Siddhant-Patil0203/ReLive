@@ -5,6 +5,8 @@ import SignUp from "./pages/SignUp";
 import Landing from "./pages/Landing";
 import OnBording from "./pages/OnBording";
 import "./assets/style/global.css";
+import MainMode from "./components/MainMode";
+import ExerciseAdder from "./components/ExerciseAdder";
 
 function App() {
   const user = true;
@@ -18,6 +20,8 @@ function App() {
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/LogIn" element={<LogIn />} />
       <Route path="/Onboarding" element={<OnBording />} />
+      <Route path="/exercise" element={<MainMode />} />
+      <Route path="/exerciseEditor" element={<ExerciseAdder />} />
     </Routes>
   );
 }
