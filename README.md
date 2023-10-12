@@ -14,6 +14,15 @@ The fitness or the general healthcare industry in India is highly unregulated an
 - Applications built for youger people is unable to guide the older population, Hence we are providing easy interactive guiding throught the session.
 - Even if you start with full confidence, retaining the users for log run is difficult on online applications. For that we are integrating streaks, reward and gamification to encourage the user.
 
+### Pitch Deck : 
+You can access the PitchDeck from here [ReLive PitchDeck](https://docs.google.com/presentation/d/e/2PACX-1vSDPcjHNUJDj1WryBGcTMCmM0HV3B_QzxKVKDV5wiw1KNU0Qu9YT_UQZzJEtLfxVg-QNXCErvmuL7Cl/pub?start=true&loop=false&delayms=3000)
 
-### FlowChart 
+### FlowChart :
+
+![image](https://github.com/Siddhant-Patil0203/localhost-3000/assets/77800620/0ba4e6e9-31be-41cb-92f8-e4b06dc69f98)
+
 You can access the flowchart from here [ReLive Flowchart](https://miro.com/app/board/uXjVNbKraZ4=/?share_link_id=496277461069)
+
+### Deployment Links 
+- Client Side : https://relive-fit.vercel.app/
+- Server Side : https://relive-server.vercel.app/
