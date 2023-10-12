@@ -9,6 +9,8 @@ const userModel = mongoose.Schema({
     weight: { type: Number }, 
     height: { type: Number },
     googleId: { type: String },
+    planType: { type: String, default: "easy"},
+    reminderTime: { type: Date },
     isOnboarded: { type: Boolean, default: false}
 })
 
