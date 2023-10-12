@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Relive APIs",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "ncc build index.js && node index.js",
     "server": "nodemon index.js"
