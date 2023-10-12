@@ -6,12 +6,16 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI
 
+import index  from './src/api/routes/index.js'
+
 const app = express();
+
+app.use(index)
 
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=>{
   app.listen(PORT, ()=> {
-    console.log("serrver running on port: "+ PORT);
+    console.log("server running on port: "+ PORT);
  })
 })
