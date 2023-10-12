@@ -59,7 +59,7 @@ const Home = () => {
               <div>
                 <img
                   className="w-full"
-                  src="../../src/assets/hero-img.png"
+                  src="../../src/assets/hero-img.PNG"
                   alt=""
                 />
               </div>
