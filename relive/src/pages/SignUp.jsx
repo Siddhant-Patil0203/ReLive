@@ -1,5 +1,6 @@
 // import { useState } from "react";
 import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
 function SignUp() {
   //   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ function SignUp() {
   //   };
 
   return (
-    <div>
+    <Layout>
       <section className="bg-background">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-background sm:px-6 lg:px-8">
@@ -123,7 +124,7 @@ function SignUp() {
               <h2 className="text-3xl font-bold leading-tight text-text sm:text-4xl">
                 Sign up to Celebration
               </h2>
-              <p className="mt-2 text-base text-gray-600">
+              <p className="mt-2 text-base text-text">
                 Already have an account?{" "}
                 <Link
                   to="/LogIn"
@@ -136,8 +137,6 @@ function SignUp() {
 
               <form action="#" method="POST" className="mt-8">
                 <div className="space-y-5">
-                  
-
                   <div>
                     <label
                       htmlFor=""
@@ -279,7 +278,7 @@ function SignUp() {
           </div>
         </div>
       </section>
-    </div>
+    </Layout>
   );
 }
 

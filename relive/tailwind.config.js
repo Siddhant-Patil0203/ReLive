@@ -9,6 +9,7 @@ export default {
         primary: "#2ee58d",
         secondary: "#062323",
         accent: "#07f2f2",
+        footer: "#101414",
       },
     },
   },

@@ -1,6 +1,7 @@
 // import  { useState } from "react";
 
 import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
 const LogIn = () => {
   //   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ const LogIn = () => {
   //   };
 
   return (
-    <div>
+    <Layout>
       <section className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-24 bg-gray-50 sm:px-6 lg:px-8">
@@ -269,7 +270,7 @@ const LogIn = () => {
           </div>
         </div>
       </section>
-    </div>
+    </Layout>
   );
 };
 

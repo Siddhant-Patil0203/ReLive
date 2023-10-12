@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <header className="bg-white fixed bg-transparent w-full">
+    <header className="bg-white fixed bg-transparent w-full z-50">
       <div className="">
         <nav className="relative flex items-center justify-between h-20 lg:shadow-lg lg:h-18 lg:px-8 bg-background border-b drop-shadow-lg">
           <div className="flex-shrink-0">
@@ -94,7 +94,7 @@ function Navbar() {
 
           <div className="hidden lg:flex lg:items-center lg:space-x-10">
             <Link
-              to="SignUp"
+              to="/SignUp"
               title=""
               className="text-base font-medium text-white transition-all duration-200 hover:text-accent focus:text-accent"
             >
@@ -103,7 +103,7 @@ function Navbar() {
             </Link>
 
             <Link
-              to="Login"
+              to="/Login"
               title=""
               className="text-base font-medium text-white transition-all duration-200 hover:text-accent focus:text-accent"
             >
