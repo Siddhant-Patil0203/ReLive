@@ -1,5 +1,8 @@
 # Team : localhost-3000 (Open Innovation)
 # ReLive
+## A Fitter Way to Life
+
+Elevate your fitness journey with our app where you can connect with your friends, track your progress, and achieve your wellness goals while following a tailored personalized workout plan, In the presence of a "Gym Buddy" [AI].
 
 ### Description : 
 The fitness or the general healthcare industry in India is highly unregulated and is even worsen by unrealistic expectations , unlicienced trainers and lack of personalization.
