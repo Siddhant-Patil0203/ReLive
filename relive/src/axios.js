@@ -6,15 +6,11 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((req) => {
-  if (localStorage.getItem("profile")) {
+  if (localStorage.getItem("user")) {
     req.headers.Authorization = `Bearer ${
       JSON.parse(localStorage.getItem("profile")).token
     }`;
-  } else if (localStorage.getItem("tailorProfile")) {
-    req.headers.Authorization = `Bearer ${
-      JSON.parse(localStorage.getItem("tailorProfile")).token
-    }`;
-  }
+  } 
 
   return req;
 });
