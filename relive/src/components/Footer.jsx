@@ -205,7 +205,7 @@ const Footer = () => {
             />
             <p className="text-2xl font-bold text-primary lg:text-3xl">
               {" "}
-              <span className="text-accent">Re</span>Live{" "}
+              <span className="text-    ">Re</span>Live{" "}
             </p>
           </Link>
 
