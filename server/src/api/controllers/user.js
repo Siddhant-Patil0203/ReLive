@@ -1,5 +1,7 @@
 import userModel from '../models/userModel.js'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import generateToken from '../middlewares/generateToken.js'
 
 
 /**
@@ -66,4 +68,41 @@ export const signup = async (req, res) => {
                 email: newUser.email
             })
         }
+}
+
+
+
+
+
+//Route: /user/signin
+//Desc: user sign in
+export const signin = async (req, res) => {
+        const { email, password } = req.body
+
+        //finduser
+        const oldUser = await userModel.findOne({email})
+
+        if(oldUser){
+            const isPasswordCorrect = bcrypt.compare(password, oldUser.password)
+
+            const token = generateToken(oldUser, process.env.USER_SECRET)
+            
+
+            req.session.user = {
+                email: oldUser.email,
+                token
+            }
+            if(isPasswordCorrect){
+                return res.status(201).json({
+                    oldUser,
+                    token
+                })
+            }
+        }
+        else{
+            return res.status(404).json({
+                msg: "user does not exist"
+            })
+        }
+
 }
