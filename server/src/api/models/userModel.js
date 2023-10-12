@@ -8,6 +8,7 @@ const userModel = mongoose.Schema({
     gender: { type: String }, 
     weight: { type: Number }, 
     height: { type: Number },
+    googleId: { type: String },
     isOnboarded: { type: Boolean, default: false}
 })
 

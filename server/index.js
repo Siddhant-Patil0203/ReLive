@@ -10,6 +10,8 @@ const MONGODB_URI = process.env.MONGODB_URI
 
 import index  from './src/api/routes/index.js'
 import user from './src/api/routes/user.js'
+import googleAuth from './src/api/routes/googleAuth.js'
+import initializePassport from './src/api/middlewares/passPortconfig.js';
 
 const app = express();
 
@@ -19,8 +21,12 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 
+initializePassport(app)
+
+
 app.use("/", index)
 app.use("/user", user)
+app.use("/auth", googleAuth)
 
 
 
