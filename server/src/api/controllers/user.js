@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt'
  * Desc: user sign in
  */
 export const signup = async (req, res) => {
-        const { email, password, confirmPassword} = req.body;
+        const { email, password, confirmPassword } = req.body;
 
         //check for already existing user
         const oldUser = await userModel.findOne({email})
@@ -54,12 +54,15 @@ export const signup = async (req, res) => {
 
         
 
-
+        console.log(email),
+        console.log(password)
         //create user
         const newUser = await userModel.create({
             email,
             password
         })
+
+        console.log(newUser)
 
         if(newUser){
             res.status(201).json({
