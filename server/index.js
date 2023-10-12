@@ -11,7 +11,7 @@ const MONGODB_URI = process.env.MONGODB_URI
 import index  from './src/api/routes/index.js'
 import user from './src/api/routes/user.js'
 import googleAuth from './src/api/routes/googleAuth.js'
-import initializePassport from './src/api/middlewares/passPortconfig.js';
+import initializePassport from './src/api/middlewares/passportConfig.js';
 
 const app = express();
 
