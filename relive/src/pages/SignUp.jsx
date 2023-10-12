@@ -1,16 +1,29 @@
-// import { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
+import axios from "../axios";
+import { useState } from "react";
 
 function SignUp() {
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-  //   const [confirmPassword, setConfirmPassword] = useState("");
+  const [form, setForm] = useState({ email: "", password: "" });
 
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     // handle form submission logic here
-  //   };
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      console.log(form);
+      const res = await axios.post("/user/signup", form)
+      console.log(res);
+      const result = res.data;
+      console.log(result);
+      localStorage.setItem("user", JSON.stringify({ ...result }));
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <Layout>
@@ -35,7 +48,7 @@ function SignUp() {
                 </h3>
                 <ul className="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-x-8 gap-y-4">
                   <li className="flex items-center space-x-3">
-                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-accent rounded-full">
+                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 rounded-full bg-accent">
                       <svg
                         className="w-3.5 h-3.5 text-white"
                         xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +68,7 @@ function SignUp() {
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-accent rounded-full">
+                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 rounded-full bg-accent">
                       <svg
                         className="w-3.5 h-3.5 text-white"
                         xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +88,7 @@ function SignUp() {
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-accent rounded-full">
+                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 rounded-full bg-accent">
                       <svg
                         className="w-3.5 h-3.5 text-white"
                         xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +108,7 @@ function SignUp() {
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 bg-accent rounded-full">
+                    <div className="inline-flex items-center justify-center flex-shrink-0 w-5 h-5 rounded-full bg-accent">
                       <svg
                         className="w-3.5 h-3.5 text-white"
                         xmlns="http://www.w3.org/2000/svg"
@@ -129,13 +142,13 @@ function SignUp() {
                 <Link
                   to="/LogIn"
                   title=""
-                  className="font-medium text-accent transition-all duration-200 hover:text-accent focus:text-accent hover:underline"
+                  className="font-medium transition-all duration-200 text-accent hover:text-accent focus:text-accent hover:underline"
                 >
                   Login
                 </Link>
               </p>
 
-              <form action="#" method="POST" className="mt-8">
+              <form onSubmit={handleSubmit}>
                 <div className="space-y-5">
                   <div>
                     <label
@@ -165,10 +178,12 @@ function SignUp() {
 
                       <input
                         type="email"
-                        name=""
-                        id=""
+                        name="email"
+                        id="email"
+                        value={form.email}
+                        onChange={handleChange}
                         placeholder="Enter email to get started"
-                        className="block w-full py-4 pl-10 pr-4 text-background placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-accent focus:bg-white caret-accent"
+                        className="block w-full py-4 pl-10 pr-4 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md text-background bg-gray-50 focus:outline-none focus:border-accent focus:bg-white caret-accent"
                       />
                     </div>
                   </div>
@@ -201,10 +216,12 @@ function SignUp() {
 
                       <input
                         type="password"
-                        name=""
-                        id=""
+                        name="password"
+                        id="password"
+                        value={form.password}
+                        onChange={handleChange}
                         placeholder="Enter your password"
-                        className="block w-full py-4 pl-10 pr-4 text-background placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-accent focus:bg-white caret-accent"
+                        className="block w-full py-4 pl-10 pr-4 placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md text-background bg-gray-50 focus:outline-none focus:border-accent focus:bg-white caret-accent"
                       />
                     </div>
                   </div>
@@ -244,7 +261,7 @@ function SignUp() {
                 <a
                   href="#"
                   title=""
-                  className="text-accent transition-all duration-200 hover:underline hover:text-accent"
+                  className="transition-all duration-200 text-accent hover:underline hover:text-accent"
                 >
                   Privacy Policy
                 </a>{" "}
@@ -252,7 +269,7 @@ function SignUp() {
                 <a
                   href="#"
                   title=""
-                  className="text-accent transition-all duration-200 hover:underline hover:text-accent"
+                  className="transition-all duration-200 text-accent hover:underline hover:text-accent"
                 >
                   Terms of Service
                 </a>
