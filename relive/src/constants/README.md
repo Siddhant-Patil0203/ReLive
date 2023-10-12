@@ -1,0 +1,1 @@
+# The constant data use all across the Application ReLive
