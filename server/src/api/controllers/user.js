@@ -1,6 +1,5 @@
 import userModel from '../models/userModel.js'
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 import generateToken from '../middlewares/generateToken.js'
 
 
@@ -88,10 +87,6 @@ export const signin = async (req, res) => {
             const token = generateToken(oldUser, process.env.USER_SECRET)
             
 
-            req.session.user = {
-                email: oldUser.email,
-                token
-            }
             if(isPasswordCorrect){
                 return res.status(201).json({
                     oldUser,

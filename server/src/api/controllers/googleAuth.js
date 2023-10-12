@@ -24,10 +24,6 @@ export const  authenticated = (req, res)=>{
   const SECRET = process.env.USER_SECRET
   const token = generateToken(req.user, SECRET);
 
-    req.session.user = {
-      token: token,
-      user: req.user
-    }
 
     res.status(200).json({
       success: true,

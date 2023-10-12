@@ -1,6 +1,8 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const userModel = mongoose.Schema({
+    _id: {type:Schema.ObjectId},
+    profileImage: {type:Buffer},
     email: { type: String },
     password: { type: String },
     username: { type: String },
