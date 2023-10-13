@@ -25,6 +25,16 @@ app.use(cors());
 initializePassport(app)
 
 
+app.all('/*', function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With,     Content-Type");
+  next();
+});
+
+import streakResetService from './src/api/services/streakResetService.js'
+streakResetService.startStreakResetTask()
+
 app.use("/", index)
 app.use("/user", user)
 app.use("/auth", googleAuth)

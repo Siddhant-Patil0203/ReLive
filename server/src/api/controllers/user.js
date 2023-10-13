@@ -1,6 +1,7 @@
 import userModel from '../models/userModel.js'
 import bcrypt from 'bcrypt'
 import generateToken from '../middlewares/generateToken.js'
+import sendWelcomeMail from '../services/sendEmail.js';
 
 
 /**
@@ -62,6 +63,9 @@ export const signup = async (req, res) => {
         })
 
         if(newUser){
+
+            sendWelcomeMail(email)
+
             res.status(201).json({
                 msg: "user signed up successfully",
                 email: newUser.email
