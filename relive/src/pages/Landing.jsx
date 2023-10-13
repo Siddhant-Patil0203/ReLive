@@ -5,7 +5,7 @@ const Landing = () => {
   return (
     <Layout>
       <div className="bg-[#030707]">
-        <section className="bg-[#030707] bg-opacity-30  sm:py-16 lg:py-14">
+        <section className="bg-[#030707] bg-opacity-30  py-8 px-7 lg:py-14">
           <div className="mx-auto sm:px-2 lg:px-20">
             <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
               <div>
@@ -13,7 +13,7 @@ const Landing = () => {
                   A Fitter way to Live
                 </p>
                 <h1 className="mt-4 text-4xl font-bold text-white lg:mt-8 sm:text-6xl xl:text-8xl">
-                 ReLive
+                  ReLive
                 </h1>
                 <p className="mt-4 text-base text-white lg:mt-8 sm:text-xl">
                   Elevate your fitness journey with our app
