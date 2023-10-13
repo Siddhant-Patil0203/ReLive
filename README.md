@@ -23,7 +23,7 @@
 ### A Fitter Way to Life
 
 >  - Elevate your fitness journey with our app, where you can connect with friends, track your exercise form and pose through ML, and achieve your wellness goals while following a tailored, personalized workout plan with the support of your 'Gym Buddy' followers.
->  - Many skip the gym due to time constraints, intimidation, or lack of motivation. Our app eliminates these hurdles, bringing fitness to your fingertips, and making it accessible, convenient, and enjoyable for everyone.
+>  - Many skip the gym due to time constraints, intimidation, or lack of motivation. Our app eliminates these hurdles, bringing fitness to your fingertips, and making it accessible, convenient, and enjoyable for   everyone.
 
 ### Description 📑
 > The fitness or the general healthcare industry in India is highly unregulated and is even worsen by unrealistic expectations , unlicienced trainers and lack of personalization.
