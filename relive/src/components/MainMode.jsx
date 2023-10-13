@@ -194,7 +194,7 @@ function MainMode() {
       </h1>
       <div>
         <Lottie
-          className="w-[640px] h-[480px] mt-10"
+          className="w-[200px] h-[200px] mt-10"
           animationData={Jump}
           fill
           loop={true}
