@@ -1,6 +1,7 @@
 import userModel from '../models/userModel.js'
 import bcrypt from 'bcrypt'
 import generateToken from '../middlewares/generateToken.js'
+import sendWelcomeMail from '../services/sendEmail.js';
 
 
 /**
@@ -35,9 +36,6 @@ export const signup = async (req, res) => {
         // }
         
 
-        console.log(email);
-        console.log(password);
-
         const oldUser = await userModel.findOne({ email });
         try {
           if (!oldUser) {
@@ -62,8 +60,8 @@ export const signup = async (req, res) => {
                 user: oldUser,
               };
       
-              //send welcome email
-            //   sendWelcomeMail(email);
+            //   send welcome email
+              sendWelcomeMail(email);
       
               res.status(200).json({
                 result: oldUser,
