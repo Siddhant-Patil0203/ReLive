@@ -13,7 +13,7 @@ const Landing = () => {
                   A Fitter way to Live
                 </p>
                 <h1 className="mt-4 text-4xl font-bold text-white lg:mt-8 sm:text-6xl xl:text-8xl">
-                  ReLive
+                  ReLive : A Fitter way to Live
                 </h1>
                 <p className="mt-4 text-base text-white lg:mt-8 sm:text-xl">
                   Elevate your fitness journey with our app
