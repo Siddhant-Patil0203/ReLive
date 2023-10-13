@@ -38,14 +38,14 @@ function OnBording() {
       setCurrentStep(currentStep + 1);
     } else {
       console.log(input);
-      
+      setCurrentInput({ ...input, isOnboarded: "true" });
       try {
-        const res = await axios.put("/user/update", input)
+        const res = await axios.put("/user/update", input);
         console.log(res);
         const result = res.data;
         console.log(result);
         localStorage.setItem("user", JSON.stringify({ ...result }));
-        navigateTo("/Home")
+        navigateTo("/Home");
       } catch (error) {
         alert(error);
       }
@@ -178,14 +178,16 @@ function OnBording() {
               ReLive
             </span>
             <p className="my-6 text-3xl font-semibold leading-10">
-              A Fitter Way to Live | {" "}
-              <span className="py-2 whitespace-nowrap text-accent">
-                Relive
-              </span>
+              A Fitter Way to Live |{" "}
+              <span className="py-2 whitespace-nowrap text-accent">Relive</span>
               .
             </p>
             <p className="mb-4">
-              Elevate your fitness journey with our app, where you can connect with friends, track your exercise form and pose through AI, and achieve your wellness goals while following a tailored, personalized workout plan with the support of your Gym Buddy followers.
+              Elevate your fitness journey with our app, where you can connect
+              with friends, track your exercise form and pose through AI, and
+              achieve your wellness goals while following a tailored,
+              personalized workout plan with the support of your Gym Buddy
+              followers.
             </p>
             <a
               href="#"

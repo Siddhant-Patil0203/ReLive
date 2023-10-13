@@ -185,17 +185,11 @@ function MainMode() {
   // }, [counter])
 
   return (
-    <div className="flex justify-around items-center bg-background text-text h-screen w-screen">
-      <div>
-        <div>
-          <ReactP5Wrapper sketch={sketch} />
-        </div>
-      </div>
-      <div>
-        <h1 id="mmt" className="m-4 text-2xl text-center">
-          count : {count}
-        </h1>
-      </div>
+    <div className="bg-background text-text">
+      <ReactP5Wrapper sketch={sketch} />
+      <h1 id="mmt" className="m-4 text-2xl text-center">
+        count : {count}
+      </h1>
     </div>
   );
 }

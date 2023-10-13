@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: black;
+}
+
 #bottone1 {
   margin-top: 40px;
   padding-left: 33px;
