@@ -1,5 +1,7 @@
 import { ReactP5Wrapper } from "@p5-wrapper/react";
 import ml5 from "ml5";
+import Lottie from "lottie-react";
+import Jump from "../animations/jumps.json";
 // import p5 from "p5";
 function MainMode() {
   // const [conter, setCounter] = useState(10);
@@ -185,11 +187,20 @@ function MainMode() {
   // }, [counter])
 
   return (
-    <div className="bg-background text-text">
+    <div className="bg-black text-text w-full h-full">
       <ReactP5Wrapper sketch={sketch} />
       <h1 id="mmt" className="m-4 text-2xl text-center">
         count : {count}
       </h1>
+      <div>
+        <Lottie
+          className="w-[640px] h-[480px] mt-10"
+          animationData={Jump}
+          fill
+          loop={true}
+          autoplay={true}
+        />
+      </div>
     </div>
   );
 }
