@@ -98,7 +98,7 @@ function OnBording() {
                 </div>
               </div>
               <h2 className="font-serif text-2xl font-semibold text-gray-700">
-                How big is your company
+                Just answer a few questions to get started !!
               </h2>
               <div className="flex flex-col w-full pb-8 mt-8">
                 <div className="relative mb-4">
@@ -175,18 +175,17 @@ function OnBording() {
         <div className="relative flex-col justify-center hidden h-screen select-none bg-secondary bg-gradient-to-br md:flex md:w-1/2">
           <div className="py-16 px-8 text-white xl:w-[40rem]">
             <span className="px-3 py-1 font-medium bg-white rounded-full text-accent">
-              New Feature
+              ReLive
             </span>
             <p className="my-6 text-3xl font-semibold leading-10">
-              Create animations with{" "}
+              A Fitter Way to Live | {" "}
               <span className="py-2 whitespace-nowrap text-accent">
-                drag and drop
+                Relive
               </span>
               .
             </p>
             <p className="mb-4">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt
-              necessitatibus nostrum repellendus ab totam.
+              Elevate your fitness journey with our app, where you can connect with friends, track your exercise form and pose through AI, and achieve your wellness goals while following a tailored, personalized workout plan with the support of your Gym Buddy followers.
             </p>
             <a
               href="#"
