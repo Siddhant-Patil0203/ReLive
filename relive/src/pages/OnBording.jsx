@@ -1,7 +1,10 @@
 import Layout from "../components/Layout";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../axios";
 
 function OnBording() {
+  const navigateTo = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const field = [
     "UserName",
@@ -28,23 +31,34 @@ function OnBording() {
 
   const [currentInput, setCurrentInput] = useState("");
 
-  const handelChange = () => {
+  const handelChange = async () => {
+    setInput({ ...input, [field[currentStep]]: currentInput });
+    setCurrentInput("");
     if (currentStep < 6) {
       setCurrentStep(currentStep + 1);
     } else {
       console.log(input);
+      
+      try {
+        const res = await axios.put("/user/update", input)
+        console.log(res);
+        const result = res.data;
+        console.log(result);
+        localStorage.setItem("user", JSON.stringify({ ...result }));
+        navigateTo("/Home")
+      } catch (error) {
+        alert(error);
+      }
     }
-    setInput({ ...input, [field[currentStep]]: currentInput });
-    setCurrentInput("");
   };
 
   return (
     <Layout>
-      <div className="flex w-screen flex-wrap text-slate-800 bg-white">
-        <div className="flex w-full flex-col md:w-1/2">
+      <div className="flex flex-wrap w-screen bg-white text-slate-800">
+        <div className="flex flex-col w-full md:w-1/2">
           <div className="my-auto mx-auto flex flex-col justify-center pt-8 md:justify-start lg:w-[34rem]">
-            <div className="flex w-full flex-col rounded-2xl bg-white px-2 sm:px-14">
-              <div className="mx-auto w-full max-w-md pb-20 px-8 sm:px-0">
+            <div className="flex flex-col w-full px-2 bg-white rounded-2xl sm:px-14">
+              <div className="w-full max-w-md px-8 pb-20 mx-auto sm:px-0">
                 <div className="relative">
                   <div
                     className="absolute left-0 top-2 h-0.5 w-full bg-gray-200"
@@ -63,7 +77,7 @@ function OnBording() {
                       } bg-gradient-to-r from-gray-900`}
                     ></div> */}
                   </div>
-                  <ul className="relative flex w-full justify-between">
+                  <ul className="relative flex justify-between w-full">
                     {[1, 2, 3, 4, 5, 6, 7].map((item, index) => {
                       return (
                         <li className="text-left" key={index}>
@@ -86,9 +100,9 @@ function OnBording() {
               <h2 className="font-serif text-2xl font-semibold text-gray-700">
                 How big is your company
               </h2>
-              <div className="mt-8 flex w-full flex-col pb-8">
+              <div className="flex flex-col w-full pb-8 mt-8">
                 <div className="relative mb-4">
-                  <div className="flex cursor-pointer flex-col rounded-2xl border border-gray-300 bg-slate-100/80 p-4 pr-8 sm:pr-16">
+                  <div className="flex flex-col p-4 pr-8 border border-gray-300 cursor-pointer rounded-2xl bg-slate-100/80 sm:pr-16">
                     <span className="mb-2 text-lg font-semibold">
                       {field[currentStep]}
                     </span>
@@ -116,7 +130,7 @@ function OnBording() {
                       id="terms"
                       name="terms"
                       type="checkbox"
-                      className="h-6 w-6 shrink-0 primary-gray-900"
+                      className="w-6 h-6 shrink-0 primary-gray-900"
                       checked
                     />
                     <span
@@ -135,13 +149,13 @@ function OnBording() {
 
                 <button
                   id="bottone1"
-                  className="flex justify-center items-center"
+                  className="flex items-center justify-center"
                   onClick={handelChange}
                 >
                   <strong>Discover features</strong>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="ml-4 h-4 w-4"
+                    className="w-4 h-4 ml-4"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -158,14 +172,14 @@ function OnBording() {
             </div>
           </div>
         </div>
-        <div className="relative hidden h-screen select-none flex-col justify-center bg-secondary bg-gradient-to-br md:flex md:w-1/2">
+        <div className="relative flex-col justify-center hidden h-screen select-none bg-secondary bg-gradient-to-br md:flex md:w-1/2">
           <div className="py-16 px-8 text-white xl:w-[40rem]">
-            <span className="rounded-full bg-white px-3 py-1 font-medium text-accent">
+            <span className="px-3 py-1 font-medium bg-white rounded-full text-accent">
               New Feature
             </span>
             <p className="my-6 text-3xl font-semibold leading-10">
               Create animations with{" "}
-              <span className="whitespace-nowrap py-2 text-accent">
+              <span className="py-2 whitespace-nowrap text-accent">
                 drag and drop
               </span>
               .
@@ -176,7 +190,7 @@ function OnBording() {
             </p>
             <a
               href="#"
-              className="font-semibold tracking-wide text-accent underline underline-offset-4"
+              className="font-semibold tracking-wide underline text-accent underline-offset-4"
             >
               Learn More
             </a>

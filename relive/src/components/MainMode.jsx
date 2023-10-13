@@ -47,9 +47,9 @@ function MainMode() {
       brain = ml5.neuralNetwork(options);
 
       const modelInfo = {
-        model: "assets/model/sqauts/model.json",
-        metadata: "assets/model/sqauts/model_meta.json",
-        weights: "assets/model/sqauts/model.weights.bin",
+        model: "assets/model/new/model.json",
+        metadata: "assets/model/new/model_meta.json",
+        weights: "assets/model/new/model.weights.bin",
       };
 
       brain.load(modelInfo, () => {

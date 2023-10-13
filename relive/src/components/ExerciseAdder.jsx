@@ -51,7 +51,7 @@ function sketch(p5) {
     //   predictPose();
     // });
     
-    brain.loadData('assets/dataset.json', trainModel);
+    brain.loadData('assets/new/dataset.json', trainModel);
   };
 
   function predictPose() {

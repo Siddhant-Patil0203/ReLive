@@ -1,7 +1,7 @@
 {
   "name": "relive",
   "private": true,
-  "proxy": "add deployed backend link later",
+  "proxy": "https://relive-server.vercel.app",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
