@@ -6,17 +6,17 @@ const Landing = () => {
     <Layout>
       <div className="bg-[#030707]">
         <section className="bg-[#030707] bg-opacity-30  sm:py-16 lg:py-14">
-          <div className=" mx-auto  sm:px-2 lg:px-20">
+          <div className="mx-auto sm:px-2 lg:px-20">
             <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
               <div>
                 <p className="text-base font-semibold tracking-wider text-white uppercase">
-                  A social media for learners
+                  A Fitter way to Live
                 </p>
                 <h1 className="mt-4 text-4xl font-bold text-white lg:mt-8 sm:text-6xl xl:text-8xl">
-                  Connect & learn from the experts
+                 ReLive
                 </h1>
                 <p className="mt-4 text-base text-white lg:mt-8 sm:text-xl">
-                  Grow your career fast with right mentor.
+                  Elevate your fitness journey with our app
                 </p>
 
                 <button id="bottone1">
@@ -50,7 +50,7 @@ const Landing = () => {
                   <Link
                     to="/LogIn"
                     title=""
-                    className=" text-accent transition-all duration-200 hover:underline"
+                    className="transition-all duration-200 text-accent hover:underline"
                   >
                     Log in
                   </Link>

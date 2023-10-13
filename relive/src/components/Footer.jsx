@@ -205,7 +205,7 @@ const Footer = () => {
             />
             <p className="text-2xl font-bold text-primary lg:text-3xl">
               {" "}
-              <span className="text-    ">Re</span>Live{" "}
+              <span className="text- ">Re</span>Live{" "}
             </p>
           </Link>
 
@@ -286,7 +286,7 @@ const Footer = () => {
           </ul>
 
           <p className="w-full mt-8 text-sm text-center text-gray-100 md:mt-0 md:w-auto md:order-2">
-            © Copyright 2021, All Rights Reserved by Postcraft
+            © Copyright 2021, All Rights Reserved by ReLive
           </p>
         </div>
       </div>

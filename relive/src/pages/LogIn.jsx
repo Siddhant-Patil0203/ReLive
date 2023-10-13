@@ -51,9 +51,7 @@ const LogIn = () => {
             <div className="relative">
               <div className="w-full max-w-xl xl:w-full xl:mx-auto xl:pr-24 xl:max-w-xl">
                 <h3 className="text-4xl font-bold text-white">
-                  Join 35k+ web professionals &{" "}
                   <br className="hidden xl:block" />
-                  build your website
                 </h3>
                 <ul className="grid grid-cols-1 mt-10 sm:grid-cols-2 gap-x-8 gap-y-4">
                   <li className="flex items-center space-x-3">
@@ -73,7 +71,7 @@ const LogIn = () => {
                     </div>
                     <span className="text-lg font-medium text-white">
                       {" "}
-                      Commercial License{" "}
+                      Exercise Tracker (DL){" "}
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
@@ -93,7 +91,7 @@ const LogIn = () => {
                     </div>
                     <span className="text-lg font-medium text-white">
                       {" "}
-                      Unlimited Exports{" "}
+                      Remote Physiotherapy{" "}
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
@@ -113,7 +111,7 @@ const LogIn = () => {
                     </div>
                     <span className="text-lg font-medium text-white">
                       {" "}
-                      120+ Coded Blocks{" "}
+                      Gym Buddy{" "}
                     </span>
                   </li>
                   <li className="flex items-center space-x-3">
@@ -133,7 +131,7 @@ const LogIn = () => {
                     </div>
                     <span className="text-lg font-medium text-white">
                       {" "}
-                      Design Files Included{" "}
+                      Gamified Fitness{" "}
                     </span>
                   </li>
                 </ul>
