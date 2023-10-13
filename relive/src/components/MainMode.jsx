@@ -1,11 +1,13 @@
 import { ReactP5Wrapper } from "@p5-wrapper/react";
 import ml5 from "ml5";
 // import p5 from "p5";
-import React, { useEffect, useState } from "react";
-
+import { useState } from "react";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 // React.memo((props)
 function MainMode() {
   // const [conter, setCounter] = useState(10);
+
+  const [percentage, setPercentage] = useState(0);
 
   let count = 10;
   let video;
@@ -89,6 +91,7 @@ function MainMode() {
         }
       }
       slider.value(x);
+      setPercentage(x * 100);
       predictPose();
     }
 
@@ -188,11 +191,26 @@ function MainMode() {
   // }, [counter])
 
   return (
-    <div className="">
-      <ReactP5Wrapper sketch={sketch} />
-      <h1 id="mmt" className="m-4 text-2xl text-center">
-        count : {count}
-      </h1>
+    <div className="flex justify-around items-center bg-background text-text h-screen w-screen">
+      <div>
+        <div>
+          <ReactP5Wrapper sketch={sketch} />
+        </div>
+      </div>
+      <div>
+        <CircularProgressbar
+          value={percentage}
+          text={`${percentage}%`}
+          styles={buildStyles({
+            textColor: "red",
+            pathColor: "turquoise",
+            trailColor: "gold",
+          })}
+        />
+        <h1 id="mmt" className="m-4 text-2xl text-center">
+          count : {count}
+        </h1>
+      </div>
     </div>
   );
 }
