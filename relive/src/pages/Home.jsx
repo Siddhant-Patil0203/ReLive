@@ -3,11 +3,11 @@ import Layout from "../components/Layout";
 function Home() {
   return (
     <Layout>
-      <section className="text-text body-font">
+      <section className="text-text body-font px-7">
         <div className="container py-5 mx-auto">
           <div className="flex flex-wrap w-full mb-8">
             <div className="w-full mb-6 lg:mb-0">
-              <h1 className="sm:text-4xl text-5xl font-medium title-font mb-2 text-text">
+              <h1 className="text-4xl lg:text-5xl font-medium title-font mb-2 text-text">
                 Statistic
               </h1>
               <div className="h-1 w-20 bg-secondary rounded"></div>
@@ -55,12 +55,12 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="text-text body-font">
+      <section className="text-text body-font px-7">
         <div className="container py-5 mx-auto">
           <div className="flex flex-wrap w-full mb-8">
             <div className="w-full mb-6 lg:mb-0">
               <div className="w-full mb-6 lg:mb-0">
-                <h1 className="sm:text-4xl text-5xl font-medium title-font mb-2 text-text">
+                <h1 className="text-4xl lg:text-5xl font-medium title-font mb-2 text-text">
                   Todays Exercises
                 </h1>
                 <div className="h-1 w-20 bg-secondary rounded"></div>
@@ -138,11 +138,11 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="text-text body-font">
+      <section className="text-text body-font px-7">
         <div className="container py-5 mx-auto">
           <div className="flex flex-wrap w-full mb-8">
             <div className="w-full mb-6 lg:mb-0">
-              <h1 className="sm:text-4xl text-5xl font-medium title-font mb-2 text-text">
+              <h1 className="text-4xl lg:text-5xl font-medium title-font mb-2 text-text">
                 Your Favourites
               </h1>
               <div className="h-1 w-20 bg-secondary rounded"></div>
