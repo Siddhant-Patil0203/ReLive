@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <header className="bg-white fixed bg-transparent w-full z-50">
       <div className="">
-        <nav className="relative flex items-center justify-between h-20 lg:shadow-lg lg:h-18 lg:px-8 bg-background border-b drop-shadow-lg">
+        <nav className="relative flex items-center justify-between h-20 pl-2 lg:shadow-lg lg:h-18 lg:px-8 bg-background border-b drop-shadow-lg">
           <div className="flex-shrink-0">
             <Link to="/" title="" className="flex">
               <img
@@ -21,10 +23,13 @@ function Navbar() {
 
           <button
             type="button"
-            className="inline-flex p-2 ml-5 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100"
+            className="inline-flex p-2 ml-5 text-white transition-all duration-200 rounded-md lg:hidden "
+            onClick={() => {
+              setNavbarOpen(!navbarOpen);
+            }}
           >
             <svg
-              className="w-6 h-6"
+              className={`w-6 h-6 ${navbarOpen ? "hidden" : ""}`}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -39,7 +44,7 @@ function Navbar() {
             </svg>
 
             <svg
-              className="w-6 h-6"
+              className={`w-6 h-6 ${navbarOpen ? "" : "hidden"}`}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -113,7 +118,11 @@ function Navbar() {
           </div>
         </nav>
 
-        <nav className="flex flex-col py-4 space-y-2 lg:hidden">
+        <nav
+          className={`flex flex-col py-4 pl-2 space-y-2 lg:hidden ${
+            navbarOpen ? "" : "hidden"
+          } `}
+        >
           <Link
             href="#"
             title=""
@@ -148,6 +157,23 @@ function Navbar() {
           >
             {" "}
             Pricing{" "}
+          </Link>
+          <Link
+            to="/SignUp"
+            title=""
+            className="py-2 text-base font-medium text-black transition-all duration-200 hover:text-accent focus:text-accent"
+          >
+            {" "}
+            Sign up{" "}
+          </Link>
+
+          <Link
+            to="/Login"
+            title=""
+            className="py-2 text-base font-medium text-black transition-all duration-200 hover:text-accent focus:text-accent"
+          >
+            {" "}
+            Sign in{" "}
           </Link>
         </nav>
       </div>

@@ -7,6 +7,7 @@ import OnBording from "./pages/OnBording";
 import "./assets/style/global.css";
 import MainMode from "./components/MainMode";
 import ExerciseAdder from "./components/ExerciseAdder";
+import Home from "./pages/Home";
 
 function App() {
   const user = true;
@@ -22,6 +23,7 @@ function App() {
       <Route path="/Onboarding" element={<OnBording />} />
       <Route path="/exercise" element={<MainMode />} />
       <Route path="/exerciseEditor" element={<ExerciseAdder />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   );
 }
