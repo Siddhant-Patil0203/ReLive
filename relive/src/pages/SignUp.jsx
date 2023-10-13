@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import axios from "../axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [form, setForm] = useState({ email: "", password: "" });
-
+  const navigateTo = useNavigate();
+  
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -20,6 +22,7 @@ function SignUp() {
       const result = res.data;
       console.log(result);
       localStorage.setItem("user", JSON.stringify({ ...result }));
+      navigateTo("/Onboarding")
     } catch (error) {
       alert(error);
     }

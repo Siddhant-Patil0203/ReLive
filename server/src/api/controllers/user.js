@@ -146,7 +146,9 @@ export const update = async (req, res) => {
         })
         if(result){
             console.log(result)
-            return res.send("user updated successfully")
+            return res.status(201).json({
+              oldUser
+          })
         }
      }
      else{

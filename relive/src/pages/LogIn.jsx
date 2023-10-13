@@ -20,7 +20,13 @@ const LogIn = () => {
       const result = res.data;
       console.log(result);
       localStorage.setItem("user", JSON.stringify({ ...result }))
-      navigateTo("/Home")
+      
+      if(result.oldUser.isOnboarded){
+        navigateTo("/Home")
+      } else {
+        navigateTo("/Onboarding")
+      }
+      
 
     } catch (error) {
       console.log(error);
