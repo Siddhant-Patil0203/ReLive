@@ -39,6 +39,8 @@ function OnBording() {
     } else {
       console.log(input);
       setCurrentInput({ ...input, isOnboarded: "true" });
+
+      
       try {
         const res = await axios.put("/user/update", input);
         console.log(res);
