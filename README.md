@@ -50,8 +50,8 @@ You can access the PitchDeck from here [ReLive PitchDeck](https://docs.google.co
 - You can access the flowchart from here [ReLive Flowchart](https://miro.com/app/board/uXjVNbKraZ4=/?share_link_id=496277461069)
 
 ### 🌐 Domains  
-- **Client Side** : https://relive-fit-2.vercel.app/
-- **Server Side** : https://relive-server-2.vercel.app/
+- **Client Side** : https://relive-fit.vercel.app/
+- **Server Side** : https://relive-server.vercel.app/
 
 ### Project Admins 🙋‍♂️
 - Siddhant Patil (Project Lead)
