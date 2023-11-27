@@ -109,19 +109,18 @@ function sketch(p5) {
       pose = poses[0].pose;
       skeleton = poses[0].skeleton;
 
-      for (let i = 0; i < pose.keypoints.length; i++) {
-        if (pose.keypoints[i].score > 0.4) {
+      // for (let i = 0; i < pose.keypoints.length; i++) {
+        if (pose.score > 0.9) {
             fullBody = true;
             fullBodyState = "Great!!";
             states.guide = "Great!!";
         }
-        
         else {
           fullBody = false;
           fullBodyState = "MoveBack";
           states.guide = "MoveBack";
         }
-      }
+      // }
 
       if (turnLeft === false) {
         if (pose.leftShoulder.confidence <= 0.6) {
