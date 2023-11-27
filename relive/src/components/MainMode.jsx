@@ -104,16 +104,22 @@ function sketch(p5) {
   }
 
   function gotPoses(poses) {
-    // console.log(poses);
+    console.log(poses);
     if (poses.length > 0) {
       pose = poses[0].pose;
       skeleton = poses[0].skeleton;
 
-      if (fullBody === false) {
-        if (pose.rightAnkle.confidence > 0.3) {
-          fullBody = true;
-          fullBodyState = "Great!!";
-          states.guide = "Great!!";
+      for (let i = 0; i < pose.keypoints.length; i++) {
+        if (pose.keypoints[i].score > 0.4) {
+            fullBody = true;
+            fullBodyState = "Great!!";
+            states.guide = "Great!!";
+        }
+        
+        else {
+          fullBody = false;
+          fullBodyState = "MoveBack";
+          states.guide = "MoveBack";
         }
       }
 
@@ -124,11 +130,11 @@ function sketch(p5) {
         }
       }
 
-      if (pose.rightAnkle.confidence <= 0.3) {
-        fullBody = false;
-        fullBodyState = "MoveBack";
-        states.guide = "MoveBack";
-      }
+      // if (pose.rightAnkle.confidence <= 0.3) {
+      //   fullBody = false;
+      //   fullBodyState = "MoveBack";
+      //   states.guide = "MoveBack";
+      // }
 
       if (state == "collecting") {
         console.log("check: collecting");
@@ -176,13 +182,13 @@ function sketch(p5) {
     // p5.textAlign(p5.RIGHT, p5.BOTTOM);
     // p5.text(count, p5.width / 2, p5.height / 2);
 
-    if (fullBody === false) {
+    // if (fullBody === false) {
       p5.fill(255, 0, 0);
       p5.noStroke();
       p5.textSize(20);
       p5.textAlign(p5.RIGHT, p5.TOP);
       p5.text(fullBodyState, p5.width / 2, p5.height / 2);
-    }
+    // }
 
     if (turnLeft === false) {
       p5.fill(255, 255, 0);
