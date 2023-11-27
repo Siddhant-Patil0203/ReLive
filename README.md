@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/Siddhant-Patil0203/localhost-3000/assets/77800620/3add86fc-30ad-414b-87a6-e24c5bf2ac21" alt="ReLive Logo" width="250px" height="250px" align="center"/> </p>
+<p align="center"><img src="https://github.com/Siddhant-Patil0203/ReLive/assets/77800620/3add86fc-30ad-414b-87a6-e24c5bf2ac21" alt="ReLive Logo" width="250px" height="250px" align="center"/> </p>
 
 <div align="center">
    <img src="https://img.shields.io/github/repo-size/Siddhant-Patil0203/localhost-3000?style=for-the-badge" />
