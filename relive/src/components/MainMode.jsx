@@ -110,16 +110,16 @@ function sketch(p5) {
       skeleton = poses[0].skeleton;
 
       for (let i = 0; i < pose.keypoints.length; i++) {
-        if (pose.keypoints[i].score > 0.4) {
-            fullBody = true;
-            fullBodyState = "Great!!";
-            states.guide = "Great!!";
-        }
-        
-        else {
+        if (pose.keypoints[i].score < 0.3) {
           fullBody = false;
           fullBodyState = "MoveBack";
           states.guide = "MoveBack";
+        }
+
+        else {
+          fullBody = true;
+          fullBodyState = "Great!!";
+          states.guide = "Great!!";
         }
       }
 
