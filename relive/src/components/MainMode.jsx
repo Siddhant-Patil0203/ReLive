@@ -40,6 +40,8 @@ function sketch(p5) {
     video = p5.createCapture(p5.VIDEO, () => {
       console.log("camera ready!");
     });
+    video.size(windowWidth, windowHeight);
+    // console.log(video);
     video.hide();
     poseNet = ml5.poseNet(video, () => console.log("poseNet ready!"));
     poseNet.on("pose", gotPoses);
@@ -146,7 +148,8 @@ function sketch(p5) {
   p5.draw = () => {
     p5.push();
     // p5.scale(-1, 5);
-    p5.image(video, 0, 0, windowWidth, windowHeight);
+    // p5.image(video, 0, 0, windowWidth, windowHeight);
+    p5.image(video, 0, 0);
 
     if (pose) {
       for (let i = 0; i < pose.keypoints.length; i++) {
