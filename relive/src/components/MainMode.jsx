@@ -101,6 +101,7 @@ function sketch(p5) {
       }
       // slider.value(x);
       states.sliderant = Math.ceil(x * 100);
+    }
       // console.log(states.sliderant);
       predictPose();
     }
@@ -113,7 +114,7 @@ function sketch(p5) {
       skeleton = poses[0].skeleton;
 
       // for (let i = 0; i < pose.keypoints.length; i++) {
-      if (pose.score > 0.9) {
+      if (pose.score > 0.8) {
         fullBody = true;
         fullBodyState = "";
         states.guide = "";
