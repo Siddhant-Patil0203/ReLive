@@ -1,7 +1,7 @@
 import { proxy } from "valtio";
 
 const states = proxy({
-  sliderant: 5,
+  sliderant: 0,
   count: 10,
 });
 
