@@ -82,44 +82,46 @@ function sketch(p5) {
   }
 
   function gotResult(error, results) {
-    let x = results[0].value;
-    if (x >= 0.9) {
-      end = true;
-      // console.log("end = true");
-    }
-    if (x <= 0.3) {
-      if (end) {
-        //   console.log("count--");
-        //   console.log("end = false");
-        count -= 1;
-        states.count -= 1;
-        end = false;
-        // document.getElementById("mmt").innerHTML = "count : " + count;
+    if (fullBody === true) {
+      console.log(results);
+      let x = results[0].value;
+      if (x >= 0.9) {
+        end = true;
+        // console.log("end = true");
       }
+      if (x <= 0.3) {
+        if (end) {
+          //   console.log("count--");
+          //   console.log("end = false");
+          count -= 1;
+          states.count -= 1;
+          end = false;
+          // document.getElementById("mmt").innerHTML = "count : " + count;
+        }
+      }
+      // slider.value(x);
+      states.sliderant = Math.ceil(x * 100);
+      // console.log(states.sliderant);
+      predictPose();
     }
-    // slider.value(x);
-    states.sliderant = Math.ceil(x * 100);
-    // console.log(states.sliderant);
-    predictPose();
   }
 
   function gotPoses(poses) {
-    console.log(poses);
+    // console.log(poses);
     if (poses.length > 0) {
       pose = poses[0].pose;
       skeleton = poses[0].skeleton;
 
       // for (let i = 0; i < pose.keypoints.length; i++) {
-        if (pose.score > 0.9) {
-            fullBody = true;
-            fullBodyState = "Great!!";
-            states.guide = "Great!!";
-        }
-        else {
-          fullBody = false;
-          fullBodyState = "MoveBack";
-          states.guide = "MoveBack";
-        }
+      if (pose.score > 0.9) {
+        fullBody = true;
+        fullBodyState = "";
+        states.guide = "";
+      } else {
+        fullBody = false;
+        fullBodyState = "Move Back!!";
+        states.guide = "Move Back!!";
+      }
       // }
 
       if (turnLeft === false) {
@@ -153,8 +155,8 @@ function sketch(p5) {
   p5.draw = () => {
     p5.push();
     // p5.scale(-1, 5);
-    // p5.image(video, 0, 0, windowWidth, windowHeight);
-    p5.image(video, 0, 0);
+    p5.image(video, 0, 0, windowWidth, windowHeight);
+    // p5.image(video, 0, 0);
 
     if (pose) {
       for (let i = 0; i < pose.keypoints.length; i++) {
@@ -182,11 +184,11 @@ function sketch(p5) {
     // p5.text(count, p5.width / 2, p5.height / 2);
 
     // if (fullBody === false) {
-      p5.fill(255, 0, 0);
-      p5.noStroke();
-      p5.textSize(20);
-      p5.textAlign(p5.RIGHT, p5.TOP);
-      p5.text(fullBodyState, p5.width / 2, p5.height / 2);
+    p5.fill(255, 0, 0);
+    p5.noStroke();
+    p5.textSize(40);
+    p5.textAlign(p5.CENTER, p5.TOP);
+    p5.text(fullBodyState, p5.width / 2, p5.height / 2);
     // }
 
     if (turnLeft === false) {
@@ -217,8 +219,6 @@ function MainMode() {
         ) : (
           <h1 className="mt-5 text-3xl text-center">Done!</h1>
         )}
-          
-
       </div>
       <ReactP5Wrapper sketch={sketch} />
     </div>
