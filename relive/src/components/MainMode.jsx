@@ -104,7 +104,7 @@ function sketch(p5) {
     }
       // console.log(states.sliderant);
       predictPose();
-    }
+    
   }
 
   function gotPoses(poses) {
