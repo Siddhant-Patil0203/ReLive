@@ -25,6 +25,8 @@ let state = "waiting";
 let target = [];
 let slider;
 let end = false;
+let noseposx = 0;
+let noseposy = 0;
 
 let fullBody = false;
 let fullBodyState = "Move Back";
@@ -40,7 +42,7 @@ function sketch(p5) {
     video = p5.createCapture(p5.VIDEO, () => {
       console.log("camera ready!");
     });
-    video.size(windowWidth, windowHeight);
+    // video.size(windowWidth, windowHeight);
     // console.log(video);
     video.hide();
     poseNet = ml5.poseNet(video, () => console.log("poseNet ready!"));
@@ -83,7 +85,7 @@ function sketch(p5) {
 
   function gotResult(error, results) {
     if (fullBody === true) {
-      console.log(results);
+      // console.log(results);
       let x = results[0].value;
       if (x >= 0.9) {
         end = true;
@@ -102,24 +104,30 @@ function sketch(p5) {
       // slider.value(x);
       states.sliderant = Math.ceil(x * 100);
     }
-      // console.log(states.sliderant);
-      predictPose();
-    
+    // console.log(states.sliderant);
+    predictPose();
   }
 
   function gotPoses(poses) {
-    // console.log(poses);
+    console.log(poses);
+
     if (poses.length > 0) {
+      noseposx = poses[0].pose.nose.x;
+      noseposy = poses[0].pose.nose.y;
       pose = poses[0].pose;
       skeleton = poses[0].skeleton;
 
       // for (let i = 0; i < pose.keypoints.length; i++) {
-      if (pose.score > 0.8) {
+      if (
+        pose.nose.confidence > 0.9 &&
+        pose.rightAnkle.confidence > 0.8 &&
+        pose.leftAnkle.confidence > 0.8
+      ) {
         fullBody = true;
         fullBodyState = "";
         states.guide = "";
       } else {
-        fullBody = false;
+        fullBody = true;
         fullBodyState = "Move Back!!";
         states.guide = "Move Back!!";
       }
@@ -185,20 +193,32 @@ function sketch(p5) {
     // p5.text(count, p5.width / 2, p5.height / 2);
 
     // if (fullBody === false) {
-    p5.fill(255, 0, 0);
-    p5.noStroke();
-    p5.textSize(40);
-    p5.textAlign(p5.CENTER, p5.TOP);
-    p5.text(fullBodyState, p5.width / 2, p5.height / 2);
+    // p5.fill(255, 0, 0);
+    // p5.noStroke();
+    // p5.textSize(40);
+    // p5.textAlign(p5.CENTER, p5.TOP);
+    // p5.text(fullBodyState, p5.width / 2, p5.height / 2);
     // }
 
-    if (turnLeft === false) {
-      p5.fill(255, 255, 0);
-      p5.noStroke();
-      p5.textSize(20);
-      p5.textAlign(p5.LEFT, p5.TOP);
-      p5.text(turnLeftState, p5.width / 2, p5.height / 2);
-    }
+    p5.fill(0, 0, 0);
+    p5.noStroke();
+    p5.textSize(20);
+    p5.textAlign(p5.CENTER, p5.TOP, windowWidth, windowHeight);
+    p5.text(noseposx, p5.width / 2, p5.height / 2);
+
+    // p5.fill(0, 0, 0);
+    // p5.noStroke();
+    // p5.textSize(20);
+    // p5.textAlign(p5.CENTER, p5.TOP);
+    // p5.text(noseposy, p5.width/4 , p5.height /2);
+
+    // if (turnLeft === false) {
+    //   p5.fill(255, 255, 0);
+    //   p5.noStroke();
+    //   p5.textSize(20);
+    //   p5.textAlign(p5.LEFT, p5.TOP);
+    //   p5.text(turnLeftState, p5.width / 2, p5.height / 2);
+    // }
   };
 }
 
@@ -208,7 +228,11 @@ function MainMode() {
 
   return (
     <div className="overflow-x-hidden bg-background text-text">
-      <div className="absolute pt-5 m-5 text-black">
+      <div className="absolute pt-5 m-5 text-black right-10">
+        <img
+          src="https://assets-v2.lottiefiles.com/a/8c2969a2-116a-11ee-ae24-8ba0ad01121d/SvaCaM18NR.gif"
+          width="150px"
+        />
         <Progress
           type="circle"
           percent={snap.sliderant}
