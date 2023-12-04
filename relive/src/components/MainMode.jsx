@@ -1,50 +1,49 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
-import { Progress, Slider } from "antd";
+// import { Progress } from "antd"; // Alternative
 import ml5 from "ml5";
-import { useSnapshot } from "valtio";
+import { snapshot, useSnapshot } from "valtio";
 import states from "../contexts/mainContext";
+import {
+  CircularProgress,
+  Card,
+  CardBody,
+  CardFooter,
+  Chip,
+  Button,
+} from "@nextui-org/react";
+import { sketch2 } from "./cameraDebug";
+import Draggable from "react-draggable";
 
-import p5 from "p5";
-
-const twoColors = {
-  "0%": "#108ee9",
-  "100%": "#87d068",
-};
+// Alternative
+// const twoColors = {
+//   "0%": "#108ee9",
+//   "100%": "#87d068",
+// };
 
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 
-let count = 10;
+let skeleton;
 let video;
 let poseNet;
 let pose;
-let skeleton;
 let brain;
 let state = "waiting";
 let target = [];
-let slider;
 let end = false;
-let noseposx = 0;
-let noseposy = 0;
-
 let fullBody = false;
-let fullBodyState = "Move Back";
-
-let turnLeft = false;
-let turnLeftState = "Turn left";
 
 function sketch(p5) {
   p5.setup = () => {
     p5.createCanvas(windowWidth, windowHeight);
-    // slider = p5.createSlider(0, 1, 0.1, 0.01);
 
     video = p5.createCapture(p5.VIDEO, () => {
       console.log("camera ready!");
     });
-    // video.size(windowWidth, windowHeight);
-    // console.log(video);
+
     video.hide();
+
     poseNet = ml5.poseNet(video, () => console.log("poseNet ready!"));
     poseNet.on("pose", gotPoses);
 
@@ -84,67 +83,39 @@ function sketch(p5) {
   }
 
   function gotResult(error, results) {
-    if (fullBody === true) {
-      // console.log(results);
-      let x = results[0].value;
-      if (x >= 0.9) {
-        end = true;
-        // console.log("end = true");
-      }
-      if (x <= 0.3) {
-        if (end) {
-          //   console.log("count--");
-          //   console.log("end = false");
-          count -= 1;
-          states.count -= 1;
-          end = false;
-          // document.getElementById("mmt").innerHTML = "count : " + count;
-        }
-      }
-      // slider.value(x);
-      states.sliderant = Math.ceil(x * 100);
+    // if (fullBody === true) {
+    // console.log(results);
+    let x = results[0].value;
+    if (x >= 0.9) {
+      end = true;
     }
-    // console.log(states.sliderant);
+    if (x <= 0.3 && end) {
+      states.count -= 1;
+      end = false;
+    }
+    states.sliderant = Math.ceil(x * 100);
+    // }
     predictPose();
   }
 
   function gotPoses(poses) {
-    console.log(poses);
+    // console.log(poses);
 
     if (poses.length > 0) {
-      noseposx = poses[0].pose.nose.x;
-      noseposy = poses[0].pose.nose.y;
       pose = poses[0].pose;
       skeleton = poses[0].skeleton;
 
-      // for (let i = 0; i < pose.keypoints.length; i++) {
       if (
         pose.nose.confidence > 0.9 &&
         pose.rightAnkle.confidence > 0.8 &&
         pose.leftAnkle.confidence > 0.8
       ) {
         fullBody = true;
-        fullBodyState = "";
-        states.guide = "";
+        states.fullbody = true;
       } else {
-        fullBody = true;
-        fullBodyState = "Move Back!!";
-        states.guide = "Move Back!!";
+        fullBody = false;
+        states.fullbody = false;
       }
-      // }
-
-      if (turnLeft === false) {
-        if (pose.leftShoulder.confidence <= 0.6) {
-          turnLeft = true;
-          turnLeftState = "Done";
-        }
-      }
-
-      // if (pose.rightAnkle.confidence <= 0.3) {
-      //   fullBody = false;
-      //   fullBodyState = "MoveBack";
-      //   states.guide = "MoveBack";
-      // }
 
       if (state == "collecting") {
         console.log("check: collecting");
@@ -163,63 +134,16 @@ function sketch(p5) {
 
   p5.draw = () => {
     p5.push();
-    // p5.scale(-1, 5);
     p5.image(video, 0, 0, windowWidth, windowHeight);
-    // p5.image(video, 0, 0);
-
-    if (pose) {
-      for (let i = 0; i < pose.keypoints.length; i++) {
-        let x = pose.keypoints[i].position.x;
-        let y = pose.keypoints[i].position.y;
-        p5.fill(0, 0, 0);
-        p5.ellipse(x, y, 16, 16);
-      }
-
-      for (let i = 0; i < skeleton.length; i++) {
-        let a = skeleton[i][0];
-        let b = skeleton[i][1];
-        p5.strokeWeight(3);
-        p5.stroke(255);
-        p5.line(a.position.x, a.position.y, b.position.x, b.position.y);
-      }
-    }
     p5.pop();
-
-    // countText
-    // p5.fill(255, 0, 255);
-    // p5.noStroke();
-    // p5.textSize(256);
-    // p5.textAlign(p5.RIGHT, p5.BOTTOM);
-    // p5.text(count, p5.width / 2, p5.height / 2);
-
-    // if (fullBody === false) {
-    // p5.fill(255, 0, 0);
-    // p5.noStroke();
-    // p5.textSize(40);
-    // p5.textAlign(p5.CENTER, p5.TOP);
-    // p5.text(fullBodyState, p5.width / 2, p5.height / 2);
-    // }
-
-    p5.fill(0, 0, 0);
-    p5.noStroke();
-    p5.textSize(20);
-    p5.textAlign(p5.CENTER, p5.TOP, windowWidth, windowHeight);
-    p5.text(noseposx, p5.width / 2, p5.height / 2);
-
-    // p5.fill(0, 0, 0);
-    // p5.noStroke();
-    // p5.textSize(20);
-    // p5.textAlign(p5.CENTER, p5.TOP);
-    // p5.text(noseposy, p5.width/4 , p5.height /2);
-
-    // if (turnLeft === false) {
-    //   p5.fill(255, 255, 0);
-    //   p5.noStroke();
-    //   p5.textSize(20);
-    //   p5.textAlign(p5.LEFT, p5.TOP);
-    //   p5.text(turnLeftState, p5.width / 2, p5.height / 2);
-    // }
   };
+}
+
+function debugCamera() {
+  if (states.debugCamera) states.debugCamera = false;
+  else states.debugCamera = true;
+
+  console.log(states.debugCamera);
 }
 
 function MainMode() {
@@ -229,22 +153,57 @@ function MainMode() {
   return (
     <div className="overflow-x-hidden bg-background text-text">
       <div className="absolute pt-5 m-5 text-black right-10">
-        <img
-          src="https://assets-v2.lottiefiles.com/a/8c2969a2-116a-11ee-ae24-8ba0ad01121d/SvaCaM18NR.gif"
-          width="150px"
-        />
-        <Progress
+        {/* Alternative */}
+        {/* <Progress
           type="circle"
           percent={snap.sliderant}
           strokeColor={twoColors}
-        />
+        /> */}
 
-        {snap.count > 0 ? (
-          <h1 className="mt-5 text-3xl text-center">{snap.count}</h1>
-        ) : (
-          <h1 className="mt-5 text-3xl text-center">Done!</h1>
-        )}
+        <Card className="w-[240px] h-[240px] border-none bg-gradient-to-br from-primary to-accent">
+          <CardBody className="items-center justify-center pb-0">
+            <CircularProgress
+              classNames={{
+                svg: "w-36 h-36 drop-shadow-md",
+                indicator: "stroke-white",
+                track: "stroke-white/10",
+                value: "text-3xl font-semibold text-white",
+              }}
+              value={snap.sliderant}
+              strokeWidth={4}
+              showValueLabel={true}
+            />
+          </CardBody>
+          <CardFooter className="items-center justify-center pt-0">
+            <Chip
+              classNames={{
+                base: "border-1 border-white/30",
+                content: "text-white/90 text-small font-semibold",
+              }}
+              variant="bordered"
+            >
+              {snap.count > 0 ? snap.count : "Done!"} Reps Left
+            </Chip>
+          </CardFooter>
+        </Card>
+
+        <Button
+          onClick={debugCamera}
+          className="p-4 m-4"
+          color="primary"
+          variant="shadow"
+        >
+          Camera Debug
+        </Button>
       </div>
+
+      {snap.debugCamera && (
+        <Draggable>
+          <div className="absolute p-2 cursor-move">
+            <ReactP5Wrapper sketch={sketch2} />
+          </div>
+        </Draggable>
+      )}
       <ReactP5Wrapper sketch={sketch} />
     </div>
   );
