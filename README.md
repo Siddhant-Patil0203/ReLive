@@ -45,7 +45,7 @@ You can access the PitchDeck from here [ReLive PitchDeck](https://docs.google.co
 
 ### FlowChart :
 
-![image](https://github.com/Siddhant-Patil0203/localhost-3000/assets/77800620/01ca71f0-e3e5-4dd0-b0ba-f9e3d30b8cd7)
+![image](https://github.com/Siddhant-Patil0203/ReLive/assets/77800620/01ca71f0-e3e5-4dd0-b0ba-f9e3d30b8cd7)
 
 - You can access the flowchart from here [ReLive Flowchart](https://miro.com/app/board/uXjVNbKraZ4=/?share_link_id=496277461069)
 
