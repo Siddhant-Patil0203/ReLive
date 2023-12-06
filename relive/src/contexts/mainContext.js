@@ -6,6 +6,7 @@ const states = proxy({
   fullbody: false,
   turnleft: false,
   debugCamera: false,
+  skeletonDebug: false,
 });
 
 export default states;

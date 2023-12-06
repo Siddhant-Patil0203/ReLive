@@ -15,24 +15,19 @@ import {
 import { sketch2 } from "./cameraDebug";
 import Draggable from "react-draggable";
 
-// Alternative
-// const twoColors = {
-//   "0%": "#108ee9",
-//   "100%": "#87d068",
-// };
-
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 
 let skeleton;
+let skeleton2;
 let video;
+let skeletonvideo;
 let poseNet;
+let poseNetSkeleton;
 let pose;
+let pose2;
 let brain;
-let state = "waiting";
-let target = [];
 let end = false;
-let fullBody = false;
 
 function sketch(p5) {
   p5.setup = () => {
@@ -42,10 +37,21 @@ function sketch(p5) {
       console.log("camera ready!");
     });
 
+    skeletonvideo = p5.createCapture(p5.VIDEO, () => {
+      console.log("skeleton camera ready!");
+    });
+    skeletonvideo.size(windowWidth, windowHeight);
+
     video.hide();
+    skeletonvideo.hide();
 
     poseNet = ml5.poseNet(video, () => console.log("poseNet ready!"));
     poseNet.on("pose", gotPoses);
+
+    poseNetSkeleton = ml5.poseNet(skeletonvideo, () =>
+      console.log("poseNet Skeleton ready!")
+    );
+    poseNetSkeleton.on("pose", gotPosesSkeleton);
 
     let options = {
       inputs: 34,
@@ -110,31 +116,50 @@ function sketch(p5) {
         pose.rightAnkle.confidence > 0.8 &&
         pose.leftAnkle.confidence > 0.8
       ) {
-        fullBody = true;
+        // fullBody = true;
         states.fullbody = true;
       } else {
-        fullBody = false;
+        // fullBody = false;
         states.fullbody = false;
       }
+    }
+  }
 
-      if (state == "collecting") {
-        console.log("check: collecting");
-        let inputs = [];
-        for (let i = 0; i < pose.keypoints.length; i++) {
-          let x = pose.keypoints[i].position.x;
-          let y = pose.keypoints[i].position.y;
-          inputs.push(x);
-          inputs.push(y);
-        }
+  function gotPosesSkeleton(poses) {
+    // console.log(poses);
 
-        brain.addData(inputs, target);
-      }
+    if (poses.length > 0) {
+      pose2 = poses[0].pose;
+      skeleton2 = poses[0].skeleton;
     }
   }
 
   p5.draw = () => {
     p5.push();
     p5.image(video, 0, 0, windowWidth, windowHeight);
+
+    if (states.skeletonDebug) {
+      if (pose2) {
+        for (let i = 0; i < pose2.keypoints.length; i++) {
+          if (pose2.keypoints[i].score < 0.5) continue;
+          let x = pose2.keypoints[i].position.x;
+          let y = pose2.keypoints[i].position.y;
+          p5.fill(0, 0, 0);
+          p5.ellipse(x, y, 16, 16);
+        }
+
+        for (let i = 0; i < skeleton2.length; i++) {
+          if (skeleton2[i][0].score < 0.5 || skeleton2[i][1].score < 0.5)
+            continue;
+          let a = skeleton2[i][0];
+          let b = skeleton2[i][1];
+          p5.strokeWeight(3);
+          p5.stroke(255);
+          p5.line(a.position.x, a.position.y, b.position.x, b.position.y);
+        }
+      }
+    }
+
     p5.pop();
   };
 }
@@ -146,12 +171,19 @@ function debugCamera() {
   console.log(states.debugCamera);
 }
 
+function skeletonDebug() {
+  if (states.skeletonDebug) states.skeletonDebug = false;
+  else states.skeletonDebug = true;
+
+  console.log(states.skeletonDebug);
+}
+
 function MainMode() {
   // const [sliderant, setSliderant] = useState(5);
   const snap = useSnapshot(states);
 
   return (
-    <div className="overflow-x-hidden bg-background text-text">
+    <div className="overflow-hidden bg-background text-text">
       <div className="absolute pt-5 m-5 text-black right-10">
         {/* Alternative */}
         {/* <Progress
@@ -187,14 +219,24 @@ function MainMode() {
           </CardFooter>
         </Card>
 
-        <Button
-          onClick={debugCamera}
-          className="p-4 m-4"
-          color="primary"
-          variant="shadow"
-        >
-          Camera Debug
-        </Button>
+        <div className="flex flex-col">
+          <Button
+            onClick={debugCamera}
+            className="my-2 mx-7"
+            color="primary"
+            variant="shadow"
+          >
+            Camera Debug
+          </Button>
+          <Button
+            onClick={skeletonDebug}
+            className="my-2 mx-7"
+            color="primary"
+            variant="shadow"
+          >
+            Skeleton Debug
+          </Button>
+        </div>
       </div>
 
       {snap.debugCamera && (
@@ -204,6 +246,7 @@ function MainMode() {
           </div>
         </Draggable>
       )}
+
       <ReactP5Wrapper sketch={sketch} />
     </div>
   );
