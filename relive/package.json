@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fseehawer/react-circular-slider": "^2.6.1",
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@nextui-org/react": "^2.2.9",
     "@p5-wrapper/react": "^4.2.0",
     "antd": "^5.11.3",

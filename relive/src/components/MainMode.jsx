@@ -2,7 +2,7 @@
 import { ReactP5Wrapper } from "@p5-wrapper/react";
 // import { Progress } from "antd"; // Alternative
 import ml5 from "ml5";
-import { snapshot, useSnapshot } from "valtio";
+import { useSnapshot } from "valtio";
 import states from "../contexts/mainContext";
 import {
   CircularProgress,
@@ -11,9 +11,14 @@ import {
   CardFooter,
   Chip,
   Button,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
 } from "@nextui-org/react";
 import { sketch2 } from "./cameraDebug";
 import Draggable from "react-draggable";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
@@ -74,23 +79,25 @@ function sketch(p5) {
   };
 
   function predictPose() {
-    if (pose) {
-      let inputs = [];
-      for (let i = 0; i < pose.keypoints.length; i++) {
-        let x = pose.keypoints[i].position.x;
-        let y = pose.keypoints[i].position.y;
-        inputs.push(x);
-        inputs.push(y);
+    if (states.fullbody) {
+      if (pose) {
+        let inputs = [];
+        for (let i = 0; i < pose.keypoints.length; i++) {
+          let x = pose.keypoints[i].position.x;
+          let y = pose.keypoints[i].position.y;
+          inputs.push(x);
+          inputs.push(y);
+        }
+        brain.predict(inputs, gotResult);
+      } else {
+        setTimeout(predictPose, 100);
       }
-      brain.predict(inputs, gotResult);
     } else {
       setTimeout(predictPose, 100);
     }
   }
 
   function gotResult(error, results) {
-    // if (fullBody === true) {
-    // console.log(results);
     let x = results[0].value;
     if (x >= 0.9) {
       end = true;
@@ -100,7 +107,6 @@ function sketch(p5) {
       end = false;
     }
     states.sliderant = Math.ceil(x * 100);
-    // }
     predictPose();
   }
 
@@ -112,14 +118,11 @@ function sketch(p5) {
       skeleton = poses[0].skeleton;
 
       if (
-        pose.nose.confidence > 0.9 &&
-        pose.rightAnkle.confidence > 0.8 &&
-        pose.leftAnkle.confidence > 0.8
+        pose.leftShoulder.confidence > 0.4 &&
+        pose.rightKnee.confidence > 0.4
       ) {
-        // fullBody = true;
         states.fullbody = true;
       } else {
-        // fullBody = false;
         states.fullbody = false;
       }
     }
@@ -222,7 +225,7 @@ function MainMode() {
         <div className="flex flex-col">
           <Button
             onClick={debugCamera}
-            className="my-2 mx-7"
+            className="z-50 my-2 mx-7"
             color="primary"
             variant="shadow"
           >
@@ -230,7 +233,7 @@ function MainMode() {
           </Button>
           <Button
             onClick={skeletonDebug}
-            className="my-2 mx-7"
+            className="z-50 my-2 mx-7"
             color="primary"
             variant="shadow"
           >
@@ -241,11 +244,62 @@ function MainMode() {
 
       {snap.debugCamera && (
         <Draggable>
-          <div className="absolute p-2 cursor-move">
+          <div className="absolute z-50 p-2 cursor-move">
             <ReactP5Wrapper sketch={sketch2} />
           </div>
         </Draggable>
       )}
+      
+      {!snap.fullbody &&
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Card
+            isBlurred
+            className="border-none bg-white/70 drop-shadow-lg dark:bg-default-100/50 max-w-[610px]"
+            shadow="sm"
+          >
+            <div className="p-3 m-3 text-secondary">
+              <>
+                <div className="flex justify-center text-3xl">Move Back</div>
+                <div>
+                  <div className="h-[300px]">
+                    <Player
+                      src="https://lottie.host/9fd72462-1cff-4f43-9e9c-d2235d07fe06/1X8lPrHsVM.json"
+                      background="transparent"
+                      speed="1"
+                      style={{ height: "350px" }}
+                      loop
+                      autoplay
+                    />
+                  </div>
+                  <p className="m-3 text-xl text-center">
+                    Please move back so that your full body is visible in the
+                    camera. You can take help of the skeleton camera or the
+                    camera debug to adjust your position.
+                  </p>
+                  <div className="flex items-center justify-center">
+                    <Button
+                      onClick={debugCamera}
+                      className="z-50 my-2 mx-7"
+                      color="primary"
+                      variant="shadow"
+                    >
+                      Camera Debug 
+                    </Button>
+                    <Button
+                      onClick={skeletonDebug}
+                      className="z-50 my-2 mx-7"
+                      color="primary"
+                      variant="shadow"
+                    >
+                      Skeleton Debug
+                    </Button>
+                  </div>
+                </div>
+              </>
+            </div>
+          </Card>
+        </div>
+      }
 
       <ReactP5Wrapper sketch={sketch} />
     </div>
